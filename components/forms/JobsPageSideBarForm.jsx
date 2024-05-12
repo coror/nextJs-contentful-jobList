@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Switch } from '@headlessui/react';
 import TagsFilterForm from './TagsFilterForm';
 
