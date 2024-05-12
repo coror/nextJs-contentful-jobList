@@ -58,8 +58,6 @@ export const getJobsByCompanyId = async ({ id }) => {
   return jobs;
 };
 
-
-
 export const searchJobs = async (query) => {
   let contentFullQuery = {
     content_type: 'job',

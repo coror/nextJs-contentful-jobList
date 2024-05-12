@@ -12,11 +12,7 @@ export const getCompaniesSlugs = async () => {
     content_type: 'company',
     select: ['fields.slug'],
   });
-
-  console.log('rawSlugs ===>', rawSlugs.items);
-
   const slugs = rawSlugs.items.map((rawSlug) => rawSlug.fields.slug);
-  console.log('slugs ===>', slugs);
   return slugs;
 };
 
@@ -24,10 +20,10 @@ export const getCompanyBySlug = async ({ slug }) => {
   const found = await client.getEntries({
     content_type: 'company',
     'fields.slug': slug,
-    include: 2,
   });
 
   if (found.items.length == 0) return null;
+
   const company = found.items[0];
   return companyReducer(company);
 };

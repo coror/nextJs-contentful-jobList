@@ -1,15 +1,13 @@
 import date from 'date-and-time';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { raw } from 'next/dist/build/webpack/loaders/next-middleware-wasm-loader';
 
 export const dateReducer = (dateStr) => {
   const dateObj = date.parse(dateStr.split('T')[0], 'YYYY-MM-DD');
-  console.log(dateObj);
   return dateObj.toDateString();
 };
 
-export const richTextReducer = (rawRichText) => {
-  const parsedRichText = documentToHtmlString(rawRichText);
+export const richTextReducer = (rawRichtext) => {
+  const parsedRichText = documentToHtmlString(rawRichtext);
   let styledRichText = parsedRichText.replace(
     '<ul>',
     "<ul style='list-style-type: circle;'>"
@@ -27,6 +25,15 @@ export const imageReducer = (imageField) => {
   };
 };
 
+export const companyReducer = (rawCompany) => {
+  let company = { ...rawCompany.fields };
+  company.id = rawCompany.sys.id;
+  company.locale = rawCompany.sys.locale;
+  company.logo = imageReducer(rawCompany.fields.logo);
+  company.coverImage = imageReducer(rawCompany.fields.coverImage);
+  return company;
+};
+
 export const tagsReducer = (tagsField) => {
   let tags = [];
   tagsField.map((rawTag) => {
@@ -42,16 +49,6 @@ export const skillsReducer = (parsedTags) => {
   return skills;
 };
 
-export const companyReducer = (rawCompany) => {
-  let company = { ...rawCompany.fields };
-
-  company.id = rawCompany.sys.id;
-  company.locale = rawCompany.sys.locale;
-  company.logo = imageReducer(rawCompany.fields.logo);
-  company.coverImage = imageReducer(rawCompany.fields.coverImage);
-  return company;
-};
-
 export const jobReducer = (rawJob, parseRelatedJobs = true) => {
   let job = { ...rawJob.fields };
 
@@ -63,7 +60,6 @@ export const jobReducer = (rawJob, parseRelatedJobs = true) => {
   job.remunerationPackage = richTextReducer(rawJob.fields.remunerationPackage);
   job.jobResponsibilities = richTextReducer(rawJob.fields.jobResponsibilities);
   job.jobDescription = richTextReducer(rawJob.fields.jobDescription);
-
   job.tags = tagsReducer(rawJob.metadata.tags);
   job.skills = skillsReducer(job.tags);
 

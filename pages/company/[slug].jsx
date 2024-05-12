@@ -1,25 +1,15 @@
 import CompanyDetails from '../../components/data/details/CompanyDetails';
 import {
+  getCompaniesSlugs,
   getJobsByCompanyId,
   getCompanyBySlug,
-  getCompaniesSlugs,
 } from '../../datalayer';
 
-const CompanyDetailsPage = ({ company, companyJobs }) => {
+const CompanyPage = ({ company, companyJobs }) => {
   return <CompanyDetails company={company} companyJobs={companyJobs} />;
 };
 
-export default CompanyDetailsPage;
-
-export const getStaticPaths = async () => {
-  const slugs = await getCompaniesSlugs();
-  const paths = slugs.map((slug) => ({ params: { slug } }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
+export default CompanyPage;
 
 export const getStaticProps = async ({ params }) => {
   const slug = params.slug;
@@ -31,5 +21,14 @@ export const getStaticProps = async ({ params }) => {
       company,
       companyJobs,
     },
+  };
+};
+
+export const getStaticPaths = async () => {
+  const slugs = await getCompaniesSlugs();
+  const paths = slugs.map((slug) => ({ params: { slug } }));
+  return {
+    paths,
+    fallback: false,
   };
 };

@@ -51,7 +51,9 @@ export default function JobsPage({ jobs, jobSkills }) {
     if (initialRender2.current) {
       initialRender2.current = false;
     } else {
-      console.log('search form changed && length >= 3 OR ==0 => triggering a search');
+      console.log(
+        'search form changed && length >= 3 OR ==0 => triggering a search'
+      );
       if (searchFormState.length >= 3 || searchFormState.length == 0) {
         const formsStates = { searchFormState, sideBarFormState };
         searchJobs('api/search-jobs', formsStates);
