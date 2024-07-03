@@ -1,20 +1,20 @@
 import { PhoneIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
-import LiftedWPBanner from '../../public/images/lifted.site-banner.png';
-import LiftedFounderAvatar from '../../public/images/liftedwp-founder-avatar.png';
+import Banner from '../../public/images/banner.png';
+import Avatar from '../../public/images/avatar.png';
 
 const profile = {
-  name: 'Junior Teudjio',
+  name: 'Erin Coralic',
   role: 'CEO & Tech-Lead',
-  companyURL: 'https://lifted.site',
-  companyName: 'lifted.site',
-  email: 'junior@lifted.site',
+  companyURL: 'https://example.site',
+  companyName: 'example.site',
+  email: 'example@example.site',
   message:
     "Hey there, If you ever need my services on a similar project, I'd love to help!",
-  callToActionURL: 'https://lifted.site/contact',
+  callToActionURL: 'https://example.site/contact',
   callToActionMessage: 'Book a Call With Me',
-  profileImage: LiftedFounderAvatar,
-  coverImage: LiftedWPBanner,
+  profileImage: Avatar,
+  coverImage: Banner,
 };
 
 export default function Header() {
@@ -32,11 +32,12 @@ export default function Header() {
         <div className='max-w-5xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5'>
             <div className='flex'>
-              <div className='relative h-28 w-28 rounded-full ring-4 ring-slate-200 sm:h-28 sm:w-28'>
+              <div className='relative h-28 w-28 rounded-full ring-4 ring-slate-200 sm:h-28 sm:w-28 overflow-hidden'>
                 <Image
                   src={profile.profileImage}
-                  layout='fill'
                   alt={`profile picture ${profile.name}`}
+                  layout='fill'
+                  className='object-cover object-center '
                 />
               </div>
             </div>

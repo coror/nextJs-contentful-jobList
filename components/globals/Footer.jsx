@@ -1,6 +1,4 @@
 import { FaYoutube, FaTwitter, FaGithub, FaLinkedin } from 'react-icons/fa';
-import LiftedLogo from '../../public/images/logo-symbolic-main-512.png';
-import Image from 'next/image';
 
 const navigation = {
   social: [
@@ -11,18 +9,18 @@ const navigation = {
     },
     {
       name: 'Twitter',
-      href: 'https://twitter.com/lifteddotsite',
+      href: 'https://twitter.com/example',
       icon: (props) => <FaTwitter />,
     },
     {
       name: 'GitHub',
-      href: 'https://github.com/lifteddotsite/',
+      href: 'https://github.com/example/',
       icon: (props) => <FaGithub />,
     },
 
     {
       name: 'LinkedIn',
-      href: 'https://linkedin.com/company/lifteddotsite',
+      href: 'https://linkedin.com/company/example',
       icon: (props) => <FaLinkedin />,
     },
   ],
@@ -33,7 +31,7 @@ const footerData = {
     "I hope you find this demo project helpful. If you ever need my services on a similar project, I'd love to help!",
 
   followMessage: 'Follow me on social media for more tutorial like this.',
-  callToActionURL: 'https://lifted.site/contact',
+  callToActionURL: 'https://example.site/contact',
   callToActionMessage: 'Click here to book a call with me.',
 };
 
@@ -63,12 +61,6 @@ export default function Footer() {
             className='text-liftedgreen-700 hover:text-liftedgreen-800'
           >
             {footerData.callToActionMessage} <br />
-            <Image
-              src={LiftedLogo}
-              height={60}
-              width={60}
-              alt={`LiftedWP - Headless Commerce & CMS Experts.`}
-            />
           </a>
         </p>
       </div>
